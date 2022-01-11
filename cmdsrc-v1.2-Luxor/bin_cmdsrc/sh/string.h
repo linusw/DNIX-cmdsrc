@@ -1,0 +1,1 @@
+#define	strcat(s1, s2)	({register char *c1,*c2;c1=s1;c2=s2;while (*c1++);--c1;while (*c1++=*c2++);})

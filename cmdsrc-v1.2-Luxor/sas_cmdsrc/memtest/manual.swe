@@ -1,0 +1,83 @@
+
+                                                 84-08-22 / JL
+
+                      M E M T E S T 
+                      =============
+
+Anv{nds till fels|kning p} och verifiering av DS90 minneskort. F|r
+n{rvarande 2100-XX. F|r eventuella framtida minneskort kan minneskret-
+sarnas placering komma att {ndras. Programmet k|rs stand-alone dvs
+under BOOT. Att k|ra under DNIX resulterar ofelbart i en core dump.
+
+Algoritm: f|rst verifieras alla bitar genom att skriva vandrande ettor
+och nollor i det testade omr}det. Sedan skrivs adressoberoende ord f|r
+att verifiera att varje ord kan adresseras unikt. Det testade omr}det
+fylls f|rst med testdata och kontroll{ses f|rst n{r hela omr}det {r
+fyllt f|r att uppdaga problen med refreshlogiken. Testtiden ligger p}
+dryga fem minuter f|r ett 0,5 Mbytes minneskort med 68010 cpu:n. Prog-
+rammet g|r d} c:a 100 000 l{sningar och skrivningar /sekund.
+
+K|rning: Kolla att du har systemet f|r dig sj{lv och stoppa det. (var
+r{dd om filsystemen !)
+
+Vrid nyckeln till l{ge 'manual' och tryck p} 'init'.
+
+Starta BOOT. 
+D} h{nder f|ljande: (dina kommandorader inom ' ')
+
+DNIX system boot 
+>'sas/memtest'
+
+Memory tester Rn.nn 
+Space below 40000H occupied by program and boot. 
+Start address (H)
+
+(en startadress l{gre {n 40000H kan leda till en krasch.)
+
+End address     (H)
+
+(skriv inte h|gre adress {n vad det finns minne i systemet f|rs|k att
+l{sa eller skriva i icke existerande minne leder till TRAP 2, bussfel,
+varvid man f}r b|rja om. )
+
+Looping test without error log (y/n) ?
+
+(looping test anv{ndes vid fels|kning varvid signalerna p} kortet f}r
+fritt spelrum och kan besk}das med oscilloskop eller logikanalysator.)
+
+Range XXXXX - YYYYY 
+Bit test with : XXXXXXXXXXXXXXXX
+
+(Nu testas alla databitar, vilket kan ta en stund. )
+
+Address test.
+
+(Nu testas minnets adresserbarhet och om allt g}r v{l skrivs :)
+
+-- No errors found --
+
+(och d} har du m|jlighet att b|rja om testet eller sluta:)
+
+Another test (y/n) ?
+
+
+(om d{remot n}got gick p} tok skrivs exempelvis :)
+
+Error in 89abc exp. 0000001000000000 found 0000000000000000 IC e 16 ?
+
+(Texten i slutet p} raden skrivs om expected och found skiljer sig i
+h|gst en bitposition och {r ett mer eller mindre beg}vat f|rslag p}
+den felande kretsens l{ge. Oftast f|ljer flera rader med fel p}
+varandra. Om samma krets f|resl}s varenda g}ng {r det ett starkt indi-
+cium p} en trasig krets. Varierar f|rslagen till synes utan system ska
+felet s|kas i den |vriga logiken. Skulle expected och found skilja sig
+i mer {n en bitposition skrivs inget IC-f|rslag ut eftersom d} g}r det
+inte att dra n}gon klyftig slutsats om trasiga minneskretar. )
+
+(N{r 10 fel har hittats skrivs : )
+
+Shall test continue (Y/N/L/Q) ?
+
+(och d} kan man v{lja mellan Yes och oftast f} reda p} ytterligare 10
+fel eller No, vilket avbryter. Slutligen kan man terminera programmet
+med Quit eller v{lja Loopin test, vilket beskrevs tidigare.)

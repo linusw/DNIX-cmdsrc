@@ -1,0 +1,67 @@
+Modules in DNIX shell
+====================
+
+HEADERS
+
+const.h
+defs.h
+errmess.h
+mac.h
+nodes.h
+ptrdef.h
+sym.h
+
+MAIN PROGRAM
+
+main.c
+parsex.c
+
+PARSE ROUTINES
+
+p_andor.c
+p_atom.c
+p_case.c
+p_cmd.c
+p_cmdlist.c
+p_for.c
+p_if.c
+p_io.c
+p_pipe.c
+p_simple.c
+p_until.c
+p_while.c
+
+EXECUTE ROUTINES
+
+x_andor.c
+x_case.c
+x_cmdlist.c
+x_for.c
+x_if.c
+x_intrn.c
+x_io.c
+x_pipe.c
+x_simple.c
+x_until.c
+x_while.c
+execute.c
+
+UTILITY ROUTINES
+
+argcrunch.c
+cmdbuf.c
+cmdsub.c
+dirlook.c
+expand.c
+filehdl.c
+flag.c
+init.c
+intrn.c
+langdep.c
+mess.c
+rsrvword.c
+sign.c
+stack.c
+strutil.c
+var.c
+wmatch.c

@@ -1,0 +1,37 @@
+These are files for a full screen editor.
+By Ulf Nilsson 1984-08-16 at Luxor Computers Software.
+
+Compile and link by typing either :
+ 
+        make
+
+or :
+
+        cc f?.c -ltermcap -o <output>
+
+
+Overview :
+
+        f0.c    -  The main routine.
+
+        f1.c    -  Misc. functions.
+
+        f2.c    -  Set/reset terminal options. Set interrupt trap
+
+        f3.c    -  Main command scan.
+
+        f4.c    -  Routines to get and insert rows in textbuffers.
+
+        f5.c    -  Most CTRL-commands.
+
+        f6.c    -  Inserting/appending one character.
+
+        f7.c    -  ESC-commands and the search-commands.
+
+        f8.c    -  Delete character(s).
+
+        f9.c    -  All CTRL_X commands ( mostly file-handling ).
+
+        term.c  -  Set terminal-type, and screen handling.
+
+

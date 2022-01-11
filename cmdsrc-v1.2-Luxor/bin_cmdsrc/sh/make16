@@ -1,0 +1,81 @@
+NAME	= make16
+CC	= c16
+CFLAGS	= -n -DDEBUG 
+LIBES	= shell16k_obj
+TARGET	= /user/dnix/dnix16/proto/bin/
+SOURCE	=	main.c		parsex.c	p_andor.c	p_atom.c\
+		p_case.c	p_cmd.c		p_cmdlist.c	p_for.c\
+		p_if.c		p_io.c		p_pipe.c	p_simple.c\
+		p_while.c	p_until.c\
+		x_andor.c	x_case.c	x_cmdlist.c	x_for.c\
+		x_if.c		x_io.c		x_intrn.c	x_pipe.c\
+		x_simple.c	x_until.c	x_while.c	execute.c\
+		argcrunch.c	args.c		cmdbuf.c	cmdsub.c\
+		dirlook.c	expand.c	filehdl.c	flag.c\
+		init.c		intrn.c		langdep.c	mess.c\
+		rsrvword.c	sign.c		stack.c		strutil.c\
+		var.c		wmatch.c	upd_vars.c	debug.c\
+		errmess.c
+            
+
+$(TARGET)sh	:$(LIBES)
+		$(CC) $(CFLAGS) -u _main $(LIBES) -o $(TARGET)shell
+
+$(LIBES):	$(SOURCE)
+	echo make -f $(NAME) $? | sed s/\\.[cs]/\\.o/g | sh -v
+	echo ar uv $@ $? | sed s/\\.[cs]/\\.o/g | sh -v
+	ranlib $@
+	rm *.o
+
+main.c		: defs.h cmdbuf.h
+parsex.c	: defs.h cmdbuf.h
+p_andor.c	: defs.h cmdbuf.h
+p_atom.c	: defs.h cmdbuf.h
+p_case.c	: defs.h cmdbuf.h
+p_cmd.c		: defs.h cmdbuf.h
+p_cmdlist.c	: defs.h cmdbuf.h
+p_for.c		: defs.h cmdbuf.h
+p_if.c		: defs.h cmdbuf.h
+p_io.c		: defs.h cmdbuf.h
+p_pipe.c	: defs.h cmdbuf.h
+p_simple.c	: defs.h cmdbuf.h
+p_until.c	: defs.h cmdbuf.h
+p_while.c	: defs.h cmdbuf.h
+
+x_andor.c	: defs.h
+x_case.c	: defs.h
+x_cmdlist.c	: defs.h
+x_for.c		: defs.h
+x_if.c		: defs.h
+x_io.c		: defs.h
+x_intrn.c	: defs.h
+x_pipe.c	: defs.h
+x_simple.c	: defs.h
+x_until.c	: defs.h
+x_while.c	: defs.h
+execute.c	: defs.h
+
+argcrunch.c	: defs.h
+args.c		: defs.h
+cmdbuf.c	: defs.h
+cmdsub.c	: defs.h
+dirlook.c	: defs.h
+expand.c	: defs.h
+filehdl.c	: defs.h
+flag.c		: defs.h
+init.c		: defs.h
+intrn.c		: defs.h
+langdep.c	: defs.h
+mess.c		: defs.h cmdbuf.h
+rsrvword.c	: defs.h
+sign.c		: defs.h
+stack.c		: defs.h
+strutil.c	: defs.h
+var.c		: defs.h
+wmatch.c	: defs.h
+upd_vars.c	: defs.h
+errmess.c	:errmess.h
+
+defs.h		: mac.h sym.h ptrdef.h nodes.h const.h errmess.h
+		touch defs.h
+		touch *.c

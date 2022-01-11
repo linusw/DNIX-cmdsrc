@@ -1,0 +1,13 @@
+echo "Dataindustrier DIAB AB  DNIX Ver 1.2 " >/dev/console
+date -u `cat /dev/bclock` >/dev/null
+date >/dev/console
+/etc/log System entering multi user mode
+cat /dev/null > /etc/utmp
+cat /dev/null > /etc/mtab
+chmod a+w /etc/mtab
+/etc/mntchk /dev/si48 /user >/dev/console </dev/autosw
+/etc/mntchk /dev/si34 /mnt >/dev/console </dev/autosw
+rm -f /tmp/* /usr/tmp/*
+/etc/update
+rm -f /usr/spool/lpd/lock
+/etc/cron

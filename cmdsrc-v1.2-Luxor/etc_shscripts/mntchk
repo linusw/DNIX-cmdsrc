@@ -1,0 +1,45 @@
+: '	NAME
+		mntchk - check if device was unmounted - mount it
+
+	SYNTAX
+		mntchk [handler] dev name
+
+	DESCRIPTION
+		Checks if file system on device "dev" is clean - if not
+		invoke fsck. Mount device "dev" using directory "name".
+		Device is mounted using "handler" if specified.
+ '
+if test ! "$1"; then
+	echo "mntchk: Mounted file systems:
+"
+	/etc/mount
+	exit 0
+fi
+if test "$3"; then
+	FHND=$1;shift
+fi
+if test ! "$2"; then
+	echo "mntchk: Invalid usage - use: mntchk [fhnd] dev name"
+	exit 1
+fi
+fscl $1 >/dev/null 2>&1
+RSTAT=$?
+if test "$RSTAT" != 1 -a "$RSTAT" != 0; then
+	echo "mntchk: Unable to read device $1 - mount failed!"
+	exit 1
+fi
+if test "$RSTAT" != 0; then
+	echo "mntchk: Device $1 ( $2 ) was not properly unmounted!"
+	fsck -t /tmp/fsck$$ $1
+fi
+if test "$FHND"; then
+   echo "mntchk: Mounting device $1 on directory $2 using filehandler $FHND"
+   /etc/mount $FHND $1 $2 >/dev/null 2>&1
+else
+   echo "mntchk: Mounting device $1 on directory $2"
+   /etc/mount $1 $2 >/dev/null 2>&1
+fi
+if test "$?" != 0; then
+	echo "mntchk: Fatal error - mount failed!!!"
+	exit 1
+fi

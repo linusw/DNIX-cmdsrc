@@ -1,0 +1,227 @@
+*****************************************************************************
+*                                                                           *
+*                                S  I  V                                    *
+*                                                                           *
+*****************************************************************************
+
+SIV is a screen oriented editor for the DNIX operating system. To get the SIV
+working you must have the SHELL variable TERM set to your terminal name and
+export it, the best function of SIV is on a VT100 compatible terminal.
+Fatal screen functions are backspace and cursor position put, SIV can also
+work on a simple adm3a terminal put not as fast as on a vt100. Commands can
+ether be one or two characters, filehandling commands are preceded by CTRL_X
+and some movment commands are preceded by ESCAPE character.
+The commands are as follows.
+
+KEY      :  CTRL_@
+NAME     :  Set-mark.
+USAGE    :  To delimit a text-area.
+SEE ALSO :  CTRL_W.
+
+                                 
+KEY      :  CTRL_A
+NAME     :  Beginning-of-line.
+USAGE    :  Moves the cursor to the start of the line.
+SEE ALSO :  CTRL_E.
+
+
+KEY      :  CTRL_B, (vt100 left arrow)
+NAME     :  Backward-character.
+USAGE    :  Moves the cursor one step backwards.
+SEE ALSO :  CTRL_F, CTRL_P, CTRL_N.
+
+
+KEY      :  CTRL_C
+NAME     :  Leave-for-shell.
+USAGE    :  Stops execution and returns to shell without saving the file.
+SEE ALSO :  CTRL_X CTRL_F.
+
+
+KEY      :  CTRL_D
+NAME     :  Delete-next-character.
+USAGE    :  Delete the character at the cursor.
+SEE ALSO :  CTRL_H.
+
+
+KEY      :  CTRL_E
+NAME     :  End-of-line.
+USAGE    :  Moves the cursor to the end of the line.
+SEE ALSO :  CTRL_A.
+
+
+KEY      :  CTRL_F, (vt100 right arrow)
+NAME     :  Forward-character.
+USAGE    :  Moves the cursor one step forward.
+SEE ALSO :  CTRL_B.
+
+
+KEY      :  CTRL_G
+NAME     :  Abort-kommand.
+USAGE    :  Exits a ESC- or a CTRL_X-command.
+SEE ALSO :  ---
+
+
+KEY      :  CTRL_H, DEL
+NAME     :  Delete previus character.
+USAGE    :  Deletes the character to the left of the cursor.
+SEE ALSO :  CTRL_D.
+
+
+KEY      :  CTRL_I
+NAME     :  Tabulate.
+USAGE    :  Insert spaces until next tabstop (column modulo 8).
+SEE ALSO :  ---
+
+
+KEY      :  CTRL_K
+NAME     :  Kill-to-end-of-line.
+USAGE    :  Deletes the rest of the line and puts it in the kill-buffer.
+SEE ALSO :  CTRL_W, CTRL_Y.
+
+
+KEY      :  CTRL_L
+NAME     :  Redraw-display.
+USAGE    :  To delete unwanted messages from the screen.
+SEE ALSO :  ---
+
+
+KEY      :  CTRL_M
+NAME     :  New line.
+USAGE    :  Insert a new line at cursor.
+SEE ALSO :  CTRL_O.
+
+
+KEY      :  CTRL_N, (vt100 down arrow)
+NAME     :  Next-line.
+USAGE    :  Moves the cursor down one row.
+SEE ALSO :  CTRL_P.
+
+
+KEY      :  CTRL_O
+NAME     :  Newline-and-back-up.
+USAGE    :  As RETURN but cursor is not moved.
+SEE ALSO :  CTRL_M.
+
+
+KEY      :  CTRL_P, (vt100 up arrow)
+NAME     :  Previous-line.
+USAGE    :  Moves the cursor to the previous line.
+SEE ALSO :  CTRL_N.
+
+
+KEY      :  CTRL_R
+NAME     :  Search-reverse.
+USAGE    :  Search reverse for a string. Two CTRL_R searches the previous
+            string.
+SEE ALSO :  CTRL_], ESC-Q.
+
+
+KEY      :  CTRL_T
+NAME     :  Transpose-characters.
+USAGE    :  Exchange the two characters before the cursor.
+SEE ALSO :  ---
+
+
+KEY      :  CTRL_U
+NAME     :  Argument-prefix.
+USAGE    :  Allows the user to print several characters or move the cursor
+            several rows by first typing the number and then the character
+            or CTRL_P or CTRL_N.
+SEE ALSO :  ---
+
+
+KEY      :  CTRL_V
+NAME     :  Next-page.
+USAGE    :  Goto the next screen.
+SEE ALSO :  ESC-V, ESC->, ESC-<.
+
+
+KEY      :  CTRL_W
+NAME     :  Delete-to-killbuffer.
+USAGE    :  Moves the text between mark and the cursor to the killbuffer.
+SEE ALSO :  CTRL_K, CTRL_Y.
+
+KEY      :  CTRL_Y
+NAME     :  Yank-back-killbuffer.
+USAGE    :  Inserts the killbuffer before the cursor.
+SEE ALSO :  CTRL_K, CTRL_W.
+
+
+KEY      :  CTRL_Z
+NAME     :  Scroll-screen-up.
+USAGE    :  To scroll the screen one line up. Unless at "home-row".
+SEE ALSO :  ---
+
+
+KEY      :  CTRL_\
+NAME     :  Quote-character.
+USAGE    :  To be able to write control-characters.
+SEE ALSO :  ---
+
+
+KEY      :  CTRL_]
+NAME     :  Search-forward.
+USAGE    :  Search forward for string. Two CTRL_] searches the previous 
+            string.
+SEE ALSO :  CTRL_R, ESC-Q.
+
+KEY      :  ESC-V
+NAME     :  Previous-page.
+USAGE    :  Goes to the previous page.
+SEE ALSO :  CTRL_V, ESC->, ESC-<.
+
+
+KEY      :  ESC->
+NAME     :  Top-of-file.
+USAGE    :  Moves the cursor to the first row in the file.
+SEE ALSO :  ESC->.
+
+
+KEY      :  ESC->
+NAME     :  End-of-file.
+USAGE    :  Moves the cursor to the last row in the file.
+SEE ALSO :  ESC-<.
+
+
+KEY      :  ESC-Q
+NAME     :  Query-replace.
+USAGE    :  Replaces one string with another.
+SEE ALSO :  CTRL_], CTRL_R.
+
+
+KEY      :  CTRL_X CTRL_F
+NAME     :  Save-and-exit.
+USAGE    :  Saves the file and exits to the shell .
+SEE ALSO :  CTRL_X S, CTRL_C.
+
+
+KEY      :  CTRL_X CTRL_I
+NAME     :  Insert-file.
+USAGE    :  Inserts a file in the one you're editing. NOTE: A file can
+            only be inserted at an "empty" row.
+SEE ALSO :  ---
+
+
+KEY      :  CTRL_X CTRL_L
+NAME     :  File-information.
+USAGE    :  Prints the filename the total number of characters and the
+            number of characters before the cursor.
+SEE ALSO :  ---
+
+
+KEY      :  CTRL_X S
+NAME     :  Save-file.
+USAGE    :  Saves the file.
+SEE ALSO :  CTRL_X CTRL_F.
+
+KEY      :  CTRL_X CTRL_V
+NAME     :  Visit-file.
+USAGE    :  Reads a file to edit.
+SEE ALSO :  ---
+
+
+
+
+
+
+

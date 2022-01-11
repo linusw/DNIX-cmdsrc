@@ -1,0 +1,29 @@
+DNIX shell V. 0.01   1983-xx-xx
+
+Departures from UNIX shell
+==========================
+
+-The commands 'english' och 'swedish' switch between
+ UNIX and DNIX syntax.
+
+-Process id for last background command is called $+ instead
+ of $! to avoid confusion with the pipe symbol.
+
+Departures from specification
+=============================
+
+- Shell variable substitutions are written as '$:...:' instead of
+  '$(...)', because the parentheses are special characters,
+  that terminate words.
+
+
+UNIX syntax with DNIX syntax equivalents
+========================================
+
+{ command-list }		begin command-list end	(command groupers)
+|				!			(pipe symbol)
+||				!!			(OR symbol)
+word | word			word ! word		(OR in pattern)
+[...]				:...:			(parameter substitution)
+`...`				#...#			(command substitution)
+\				%			(quote next character)

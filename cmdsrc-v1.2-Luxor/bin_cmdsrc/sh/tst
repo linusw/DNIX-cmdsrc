@@ -1,0 +1,1 @@
+echo -n === ; read x; echo ==== $x

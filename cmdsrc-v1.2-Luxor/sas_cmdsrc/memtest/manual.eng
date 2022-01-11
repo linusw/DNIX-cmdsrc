@@ -1,0 +1,88 @@
+
+
+                                              84-08-22 / JL
+
+
+                   M E M T E S T 
+                   ============= 
+
+Is a memory tester for DS90 memory boards. At present 2100-XX. The
+position of the memory chips may change on an eventual future version
+of these boards. The program is executeable in stand-alone mode i. e.
+under BOOT. Running it under DNIX will result in a core dump. 
+
+Algorithm: at first all bits are verified by writing walking ones and
+zeroes in the tested area. And then it writes an irregular addressin-
+dependant pattern to insure that all words can be uniqueley addressed.
+The tested area is first filled with testdata and examined only when
+the whole area is filled. This is helpful when you are tracking down
+refresh logic errors. The runtime is approximately five minutes for a
+card with 0.5 Mbyte and a 68010 cpu. This means that it does about 100
+000 r/w operations per second. 
+
+Operation: Be sure that you are alone on the system and bring it down
+(take care of the file systems !) 
+
+Turn the key to 'manual' and press 'init'. 
+
+Start BOOT 
+And the following will happen: (Your input is quoted with ' ') 
+
+DNIX system boot 
+>'sas/memtest' 
+
+Memory tester Rn.nn 
+Space below 40000H occupied by program and boot. 
+Strat address (H) 
+
+(A starting address lower than 40000H may cause a crash.) 
+
+End address   (H) 
+
+(Don't specify a higher address than the system's upper memory limit.
+An attempt to read or write in non-existing memory will cause a TRAP
+2, bus error, and you had to start all over again.) 
+
+Looping test without error log (y/n) ? 
+
+(Looping test is used for trouble shooting with scope or logic analy-
+zer.) 
+
+Range XXXXX - YYYYY 
+Bit test with : XXXXXXXXXXXXXXXX 
+
+(Now all bits are checked, it may take a few minutes.) 
+
+Address test. 
+
+(Now, the addressing ability is tested.) 
+
+(And if everything works, it states:) 
+
+-- No errors found -- 
+
+(And you can terminate the the program by answering No :)
+
+Another test (y/n) ?
+
+
+(If something went wrong, it proudly declares:) 
+
+Error in 89abc exp. 0000001000000000 found 0000000000000000 IC e 16 ? 
+
+(The text at the end of the row is written if expected and found value
+differs in only one bit and is a more or less bright idea about the
+location of the faulty chip. At most there will be several rows with
+error notes. If same circuit are suggested every time is this a strong
+indicium on a faulty memory chip. If the syggestions varies at random
+will you probably find the error in the decode, bus or refresh logic.
+Should expected and found value differ in more than one bit, the IC
+suggestion will be suppressed.
+
+(When 10 has been found, you will see the following on your screen : ) 
+
+Shall test continue (Y/N/L/Q) ?
+
+
+(and you can choose between Yes, No and Looping test which was descri-
+bed earlier. The Quit optition terminates the program. )

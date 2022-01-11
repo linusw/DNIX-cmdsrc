@@ -1,0 +1,6 @@
+if test -n "$1"
+then
+echo `date` "$*" >>/usr/spool/SYS_LOG
+else
+cat /usr/spool/SYS_LOG
+fi
